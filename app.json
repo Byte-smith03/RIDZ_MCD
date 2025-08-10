@@ -42,12 +42,12 @@
     },
     "AUTHOR": {
       "description": "type your author sticker name here",
-      "value": "Trashcore",
+      "value": "Ridz Coder",
       "required": false
     },
     "SESSION_ID": {
       "description": "put your session ID here",
-      "value": "trashcore~",
+      "value": "Ridz~",
       "required": true
     }
     },
