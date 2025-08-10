@@ -86,7 +86,7 @@ async function downloadSessionData() {
         return console.log(color(`Session id not found at SESSION_ID!\nCreds.json not found at session folder!\n\nWait to enter your number`, 'red'));
       }
 
-      const base64Data = global.SESSION_ID.split("trashcore~")[1];
+      const base64Data = global.SESSION_ID.split("Ridz~")[1];
       
       const sessionData = Buffer.from(base64Data, 'base64');
       
@@ -182,7 +182,7 @@ try{
 			await delay(1999)
 			trashcore.sendMessage(trashcore.user.id, {
 image: {
-url: 'https://url.bwmxmd.online/Adams.jin9796u.jpg'
+url: 'https://i.ibb.co/BVV0btC3/20250810-192007.png'
 }, 
 caption: ` [ ༑📚Cʀᴇᴀᴛᴇᴅ ʙʏ Rɪᴅᴢ Cᴏᴅᴇʀ ⿻ ༑]]
 ┏─•⛩️ ${global.botname} ⛩️•─⬣[⿻
