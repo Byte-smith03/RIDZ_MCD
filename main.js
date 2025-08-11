@@ -86,7 +86,7 @@ async function downloadSessionData() {
         return console.log(color(`Session id not found at SESSION_ID!\nCreds.json not found at session folder!\n\nWait to enter your number`, 'red'));
       }
 
-      const base64Data = global.SESSION_ID.split("Ridz~")[1];
+      const base64Data = global.SESSION_ID.split("trashcore~")[1];
       
       const sessionData = Buffer.from(base64Data, 'base64');
       
@@ -520,4 +520,54 @@ return waMessage
     trashcore.sendPoll = (jid, name = '', values = [], selectableCount = 1) => { return trashcore.sendMessage(jid, { poll: { name, values, selectableCount }}) }
 
 trashcore.parseMention = (text = '') => {
-return [...text.matchAll(/@([0-9]{5,16}|0)/g)].map(v => v[1] + '@s.wh
+return [...text.matchAll(/@([0-9]{5,16}|0)/g)].map(v => v[1] + '@s.whatsapp.net')
+}
+            
+    trashcore.downloadMediaMessage = async (message) => {
+        let mime = (message.msg || message).mimetype || ''
+        let messageType = message.mtype ? message.mtype.replace(/Message/gi, '') : mime.split('/')[0]
+        const stream = await downloadContentFromMessage(message, messageType)
+        let buffer = Buffer.from([])
+        for await (const chunk of stream) {
+            buffer = Buffer.concat([buffer, chunk])
+        }
+
+        return buffer
+    }
+    return trashcore
+}
+
+async function tylor() {
+    if (fs.existsSync(credsPath)) {
+        console.log(color("Session file found, starting bot...", 'yellow'));
+await starttrashcore();
+} else {
+         const sessionDownloaded = await downloadSessionData();
+        if (sessionDownloaded) {
+            console.log("Session downloaded, starting bot.");
+await starttrashcore();
+    } else {
+     if (!fs.existsSync(credsPath)) {
+    if(!global.SESSION_ID) {
+            console.log(color("Please wait for a few seconds to enter your number!", 'red'));
+await starttrashcore();
+        }
+    }
+  }
+ }
+}
+
+tylor()
+
+process.on('uncaughtException', function (err) {
+let e = String(err)
+if (e.includes("conflict")) return
+if (e.includes("Socket connection timeout")) return
+if (e.includes("not-authorized")) return
+if (e.includes("already-exists")) return
+if (e.includes("rate-overlimit")) return
+if (e.includes("Connection Closed")) return
+if (e.includes("Timed Out")) return
+if (e.includes("Value not found")) return
+console.log('Caught exception: ', err)
+})
